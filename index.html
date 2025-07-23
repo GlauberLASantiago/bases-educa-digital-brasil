@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bases Legais da Educação Digital no Brasil</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        /* Custom styles and color palette integration */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F9F9F9;
+            color: #434344;
+        }
+        /* Custom colors from the palette */
+        .bg-custom-blue { background-color: #1E40FB; }
+        .text-custom-blue { color: #1E40FB; }
+        .hover\:bg-custom-blue-dark:hover { background-color: #152dab; }
+        .border-custom-blue { border-color: #1E40FB; }
+        
+        .text-custom-yellow { color: #FECF2F; }
+        .text-yellow-title { color: #EAB308; } /* A slightly darker yellow for titles for better contrast */
+
+        .text-custom-green { color: #1FD025; }
+
+        .text-custom-red { color: #FC0019; }
+
+        .bg-custom-gray { background-color: #434344; }
+        
+        /* Animation for content cards */
+        .content-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Staggered animation delay */
+        .content-section .content-card {
+            animation-delay: calc(0.1s * var(--card-index));
+        }
+    </style>
+</head>
+<body 
+    x-data="{ 
+        openMenu: false, 
+        activeSection: 'leis', 
+        showBackToTop: false
+    }" 
+    @scroll.window="
+        const sections = document.querySelectorAll('.content-section');
+        let currentSection = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (window.scrollY >= sectionTop - 100) {
+                currentSection = section.id;
+            }
+        });
+        activeSection = currentSection;
+        showBackToTop = window.scrollY > 400;
+      "
+    class="transition-colors duration-300">
+
+    <!-- Header and Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-custom-blue">
+                Educação Digital no Brasil
+            </h1>
+            
+            <div class="flex items-center">
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-4">
+                    <a href="#leis" @click="activeSection = 'leis'" :class="{'text-custom-blue font-semibold border-b-2 border-custom-blue': activeSection === 'leis', 'text-gray-600 hover:text-custom-blue': activeSection !== 'leis'}" class="transition-colors duration-300">Leis</a>
+                    <a href="#decretos" @click="activeSection = 'decretos'" :class="{'text-custom-blue font-semibold border-b-2 border-custom-blue': activeSection === 'decretos', 'text-gray-600 hover:text-custom-blue': activeSection !== 'decretos'}" class="transition-colors duration-300">Decretos</a>
+                    <a href="#diretrizes" @click="activeSection = 'diretrizes'" :class="{'text-custom-blue font-semibold border-b-2 border-custom-blue': activeSection === 'diretrizes', 'text-gray-600 hover:text-custom-blue': activeSection !== 'diretrizes'}" class="transition-colors duration-300">Diretrizes</a>
+                    <a href="#pareceres" @click="activeSection = 'pareceres'" :class="{'text-custom-blue font-semibold border-b-2 border-custom-blue': activeSection === 'pareceres', 'text-gray-600 hover:text-custom-blue': activeSection !== 'pareceres'}" class="transition-colors duration-300">Pareceres</a>
+                    <a href="#referenciais" @click="activeSection = 'referenciais'" :class="{'text-custom-blue font-semibold border-b-2 border-custom-blue': activeSection === 'referenciais', 'text-gray-600 hover:text-custom-blue': activeSection !== 'referenciais'}" class="transition-colors duration-300">Referenciais</a>
+                    <a href="#guias" @click="activeSection = 'guias'" :class="{'text-custom-blue font-semibold border-b-2 border-custom-blue': activeSection === 'guias', 'text-gray-600 hover:text-custom-blue': activeSection !== 'guias'}" class="transition-colors duration-300">Guias</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden ml-4">
+                    <button @click="openMenu = !openMenu" class="text-gray-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div x-show="openMenu" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="md:hidden bg-white border-t" @click.away="openMenu = false">
+            <nav class="flex flex-col p-4 space-y-2">
+                <a href="#leis" @click="openMenu = false; activeSection = 'leis'" class="text-gray-600 hover:text-custom-blue px-4 py-2 rounded">Leis</a>
+                <a href="#decretos" @click="openMenu = false; activeSection = 'decretos'" class="text-gray-600 hover:text-custom-blue px-4 py-2 rounded">Decretos</a>
+                <a href="#diretrizes" @click="openMenu = false; activeSection = 'diretrizes'" class="text-gray-600 hover:text-custom-blue px-4 py-2 rounded">Diretrizes</a>
+                <a href="#pareceres" @click="openMenu = false; activeSection = 'pareceres'" class="text-gray-600 hover:text-custom-blue px-4 py-2 rounded">Pareceres</a>
+                <a href="#referenciais" @click="openMenu = false; activeSection = 'referenciais'" class="text-gray-600 hover:text-custom-blue px-4 py-2 rounded">Referenciais</a>
+                <a href="#guias" @click="openMenu = false; activeSection = 'guias'" class="text-gray-600 hover:text-custom-blue px-4 py-2 rounded">Guias</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        
+        <!-- Section: Leis -->
+        <section id="leis" class="content-section mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-custom-blue flex items-center">
+                <span class="mr-4 text-4xl">📚</span> Leis
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+        
+        <!-- Section: Decretos -->
+        <section id="decretos" class="content-section mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-custom-red flex items-center">
+                <span class="mr-4 text-4xl">📜</span> Decretos
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- Section: Diretrizes -->
+        <section id="diretrizes" class="content-section mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-yellow-title flex items-center">
+                <span class="mr-4 text-4xl">📄</span> Diretrizes e Referenciais Curriculares
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- Section: Pareceres -->
+        <section id="pareceres" class="content-section mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-custom-green flex items-center">
+                <span class="mr-4 text-4xl">📊</span> Pareceres, Resoluções e Portarias
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- Section: Referenciais -->
+        <section id="referenciais" class="content-section mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-custom-blue flex items-center">
+                <span class="mr-4 text-4xl">🎯</span> Referenciais e Estratégias
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- Section: Guias -->
+        <section id="guias" class="content-section mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-custom-red flex items-center">
+                <span class="mr-4 text-4xl">🗺️</span> Guias e Demais Recursos
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-custom-gray text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>Compilação elaborada por:</p>
+            <p class="font-bold text-lg mt-1 text-custom-yellow">Julciane Castro da Rocha (UFMS)</p>
+            <p class="text-sm mt-4 opacity-70">&copy; 2025 - Bases Legais da Educação Digital no Brasil. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button x-show="showBackToTop" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform translate-y-4"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 transform translate-y-0"
+            x-transition:leave-end="opacity-0 transform translate-y-4"
+            class="fixed bottom-8 right-8 bg-custom-blue text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-custom-blue-dark transition-colors duration-300 z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" /></svg>
+    </button>
+
+    <script>
+        // Data from the provided document
+        const data = {
+            leis: [
+                { title: "Lei nº 9.394/1996 — LDB", url: "https://www.planalto.gov.br/ccivil_03/leis/l9394.htm", description: "Marco legal da educação nacional, define princípios gerais, etapas, modalidades, direitos e deveres. Alterada pela PNED para tornar a Educação Digital parte obrigatória do currículo, com letramento digital, computação, programação e robótica." },
+                { title: "Lei nº 9.998/2000 — FUST", url: "https://www.planalto.gov.br/ccivil_03/leis/l9998.htm", description: "Institui o Fundo de Universalização dos Serviços de Telecomunicações, viabilizando recursos para levar conectividade a escolas públicas, áreas remotas e populações em situação de vulnerabilidade digital." },
+                { title: "Lei nº 13.005/2014 — Plano Nacional de Educação (PNE)", url: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13005.htm", description: "Estabelece diretrizes, metas e estratégias decenais para o avanço da educação, prevendo modernização tecnológica, infraestrutura de conectividade e formação docente em TDIC. O novo PNE (2024-2034) está em tramitação." },
+                { title: "Lei nº 14.172/2021 — Lei da Conectividade", url: "https://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2021/Lei/L14172.htm", description: "Prevê acesso gratuito à internet para estudantes e professores da rede pública, articulando políticas emergenciais para enfrentar desigualdades digitais." },
+                { title: "Lei nº 14.180/2021 — PIEC", url: "https://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2021/Lei/L14180.htm", description: "Formaliza a Política de Inovação Educação Conectada, garantindo internet de qualidade, financiamento contínuo e diretrizes para o uso pedagógico de tecnologias." },
+                { title: "Lei nº 14.533/2023 — PNED", url: "https://www.planalto.gov.br/ccivil_03/_Ato2023-2026/2023/Lei/L14533.htm", description: "Institui a Política Nacional de Educação Digital, integrando ações de inclusão digital, currículo, formação docente e pesquisa em inovação tecnológica." },
+                { title: "Lei nº 14.640/2023 — Expansão da Conectividade Escolar", url: "https://www.planalto.gov.br/ccivil_03/_Ato2023-2026/2023/Lei/L14640.htm", description: "Atualiza a Lei da Conectividade, garantindo ampliação de banda larga, acesso a pacotes de dados e conexão para escolas de tempo integral." },
+                { title: "Lei nº 15.100/2025 — Uso de Celulares nas Escolas", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15100.htm", description: "Dispõe sobre a utilização de aparelhos eletrônicos portáteis pessoais nos estabelecimentos de ensino. Restringe usos não pedagógicos e garante o tempo de aprendizagem." }
+            ],
+            decretos: [
+                { title: "Decreto nº 11.004/2022 — FUST Regulamentação", url: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/d11004.htm", description: "Define critérios para aplicação de recursos em projetos de internet escolar." },
+                { title: "Decreto nº 11.079/2022 — Política de Recuperação das Aprendizagens", url: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/decreto/d11079.htm", description: "Organiza ações pós-pandemia com foco em ensino híbrido e uso de tecnologias digitais." },
+                { title: "Decreto nº 11.713/2023 — ENEC", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11713.htm", description: "Cria a Estratégia Nacional de Escolas Conectadas, articulando infraestrutura, qualidade de Wi-Fi, segurança, currículo digital e formação de professores." },
+                { title: "Decreto nº 12.385/2025 — Regulamentação da Lei nº 15.100/2025", url: "https://www2.camara.leg.br/legin/fed/decret/2025/decreto-12385-18-fevereiro-2025-796954-publicacaooriginal-174401-pe.html", description: "Define como as escolas devem aplicar as restrições de uso de celulares, envolvendo a comunidade escolar." }
+            ],
+            diretrizes: [
+                { title: "Diretrizes Curriculares Nacionais da Educação Básica (DCN), 2013", url: "https://www.gov.br/mec/pt-br/media/etnico_racial/pdf/diretrizes_curriculares_nacionais_para_educacao_basica_diversidade_e_inclusao_2013.pdf", description: "Princípios gerais para a organização curricular da Educação Básica, orientando a integração entre base comum e parte diversificada, o trabalho interdisciplinar e a contextualização." },
+                { title: "Diretrizes Curriculares Nacionais para a Educação Infantil (DCNEI)", url: "https://portal.mec.gov.br/dmdocuments/diretrizescurriculares_2012.pdf", description: "Direitos de aprendizagem das crianças, com menção explícita a tecnologias como parte das experiências que envolvem as interações e a brincadeira." },
+                { title: "BNCC — Base Nacional Comum Curricular (2018)", url: "https://basenacionalcomum.mec.gov.br/", description: "Define competências gerais e específicas obrigatórias, incluindo Cultura Digital como competência transversal." },
+                { title: "BNCC Computação (Anexo Parecer CNE/CEB nº 2/2022)", url: "https://portal.mec.gov.br/docman/fevereiro-2022-pdf/236791-anexo-ao-parecer-cneceb-n-2-2022-bncc-computacao/file", description: "Estabelece objetivos de aprendizagem e estratégias didáticas para Pensamento Computacional, Mundo Digital e Cultura Digital." }
+            ],
+            pareceres: [
+                { title: "Parecer CNE/CEB nº 2/2022 — Normas sobre Computação", url: "https://www.gov.br/mec/pt-br/cne/parecer-ceb-2022", description: "Inclui Pensamento Computacional, Mundo Digital e Cultura Digital como conteúdos obrigatórios da BNCC e defende essa inserção." },
+                { title: "Resolução CNE/CEB nº 1/2022", url: "https://www.gov.br/mec/pt-br/cne/resolucoes/esolucoes-ceb-2022", description: "Homologa o Parecer nº 2/2022, consolidando a BNCC Computação como norma oficial." },
+                { title: "Portaria nº 865/2022 — RIEH", url: "https://www.in.gov.br/en/web/dou/-/portaria-n-865-de-8-de-novembro-de-2022-443021071", description: "Cria a Rede de Inovação para a Educação Híbrida, fortalecendo metodologias mistas de ensino." },
+                { title: "Parecer CNE/CEB nº 4/2025 — Diretrizes Operacionais de Dispositivos Digitais", url: "https://www.gov.br/mec/pt-br/cne/2025/Fevereiro%202025/pceb004_25.pdf", description: "Orienta o uso pedagógico de dispositivos móveis, vinculando a regulação do uso de celulares à intencionalidade curricular e à cidadania digital." },
+                { title: "Resolução CE/ENEC nº 3/2024 — Qualidade e Segurança do Wi-Fi Escolar", url: "https://www.in.gov.br/en/web/dou/-/resolucao-ce/enec-n-3-de-11-de-julho-de-2024-572637374", description: "Define padrões mínimos de qualidade, velocidade, segurança e proteção de dados nas redes Wi-Fi de escolas públicas." },
+                { title: "Resolução CENEC nº 2/2024 — Velocidade Mínima de Internet", url: "https://www.in.gov.br/web/dou/-/resolucao-cenec-n-2-de-22-de-fevereiro-de-2024-546279176", description: "Estabelece metas de velocidade de banda larga por porte de escola, garantindo conexão mínima para atividades pedagógicas digitais." },
+                { title: "Resolução CIF nº 15/2025 — Fundeb e BNCC", url: "https://www.in.gov.br/web/dou/-/resolucao-cif-n-15-de-12-de-junho-de-2025-636296274", description: "Regulamenta a metodologia para aferir condicionalidades do Fundeb relacionadas à implementação curricular da BNCC, incluindo a computação como critério de qualidade." },
+                { title: "Ofício MEC SEI nº 88/2024 — Consulta Técnica sobre Computação", url: "https://www.gov.br/mec/pt-br/escolas-conectadas/SEI_MEC4872119Ofcio.pdf", description: "Documento de orientação técnica que esclarece possibilidades de oferta de Computação: como disciplina específica ou conteúdo transversal." }
+            ],
+            referenciais: [
+                { title: "Referencial de Saberes Digitais Docentes (2024)", url: "https://www.gov.br/mec/pt-br/escolas-conectadas/documentos", description: "Visa atender os objetivos da Estratégia Nacional de Escolas Conectadas, apoiar secretarias no planejamento de formação e favorecer o autodesenvolvimento dos professores." },
+                { title: "Autodiagnóstico de Saberes Digitais Docentes (MEC, 2024)", url: "https://avamec.mec.gov.br/#/autodiagnostico", description: "Ferramenta prática de autoavaliação docente para mapear os saberes digitais, com base na Matriz de Saberes Digitais Docentes." },
+                { title: "Estratégia Brasileira de Educação Midiática — EBEM (2023)", url: "https://www.gov.br/mec/pt-br/escolas-conectadas/documentos", description: "Fortalece a dimensão da Cultura Digital nas escolas, incentivando o pensamento crítico, leitura crítica de mídias e práticas de cidadania digital." }
+            ],
+            guias: [
+                { title: "Guia de Planejamento da Adoção de Dispositivos Tecnológicos (2025)", url: "https://www.gov.br/mec/pt-br/escolas-conectadas/documentos", description: "Instrumento técnico para gestores planejar aquisição, distribuição, manutenção e gestão de equipamentos digitais." },
+                { title: "Guia de Educação Digital e Midiática (2025)", url: "https://www.gov.br/mec/pt-br/escolas-conectadas/documentos", description: "Documento de referência para fundamentar teoricamente, didaticamente e operacionalmente a inserção curricular da Educação Digital." },
+                { title: "Guias e materiais de apoio à Lei 15100/2025 — Celulares nas Escolas (2025)", url: "https://mecred.mec.gov.br/recurso/364590?collectionId=16247", description: "Guias práticos para educadores, gestores, familiares e estudantes para auxiliar na compreensão e implementação da Lei 15.100/2025." },
+                { title: "Cursos no AVAMEC", url: "https://avamec.mec.gov.br/#/curso/listar", description: "Ambiente Virtual de Aprendizagem do MEC, que dispõe de vários cursos relacionados ao tema da Educação Digital." },
+                { title: "MEC RED", url: "https://mecred.mec.gov.br/", description: "Plataforma de Recursos Educacionais Digitais do MEC, aberta a todos que se interessam pela relação entre a escola e a cultura digital." },
+                { title: "Seminários sobre currículo de Educação Digital (2024)", url: "https://www.gov.br/mec/pt-br/escolas-conectadas/curriculo", description: "Conjunto de webinários realizados pelo MEC discutindo Educação Digital." },
+                { title: "Site da Estratégia Nacional de Escolas Conectadas — Documentos", url: "https://www.gov.br/mec/pt-br/escolas-conectadas/documentos", description: "No site da ENEC, o MEC atualiza documentos importantes, em especial, aqueles relacionados a procedimentos que as redes precisam fazer." }
+            ]
+        };
+
+        // Function to create and inject content cards
+        function createCard(item) {
+            return `
+                <div class="content-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 flex flex-col" style="--card-index: ${item.index};">
+                    <div class="p-6 flex-grow">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">${item.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">${item.description}</p>
+                    </div>
+                    <div class="p-6 bg-gray-50">
+                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-custom-blue font-semibold hover:underline">
+                            Acessar Documento
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Populate sections with data
+        document.addEventListener('DOMContentLoaded', () => {
+            Object.keys(data).forEach(sectionId => {
+                const section = document.querySelector(`#${sectionId} > div`);
+                if (section) {
+                    const items = data[sectionId];
+                    section.innerHTML = items.map((item, index) => createCard({...item, index})).join('');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
