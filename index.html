@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bases Legais da Educação Digital no Brasil</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Alpine.js for interactivity -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
@@ -78,7 +75,6 @@
       "
     class="transition-colors duration-300">
 
-    <!-- Header and Navigation -->
     <header class="bg-white shadow-md sticky top-0 z-50 transition-colors duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-xl md:text-2xl font-bold text-custom-blue">
@@ -86,7 +82,6 @@
             </h1>
             
             <div class="flex items-center">
-                <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-4">
                     <a href="#leis" @click="activeSection = 'leis'" :class="{'text-custom-blue font-semibold border-b-2 border-custom-blue': activeSection === 'leis', 'text-gray-600 hover:text-custom-blue': activeSection !== 'leis'}" class="transition-colors duration-300">Leis</a>
                     <a href="#decretos" @click="activeSection = 'decretos'" :class="{'text-custom-blue font-semibold border-b-2 border-custom-blue': activeSection === 'decretos', 'text-gray-600 hover:text-custom-blue': activeSection !== 'decretos'}" class="transition-colors duration-300">Decretos</a>
@@ -96,7 +91,6 @@
                     <a href="#guias" @click="activeSection = 'guias'" :class="{'text-custom-blue font-semibold border-b-2 border-custom-blue': activeSection === 'guias', 'text-gray-600 hover:text-custom-blue': activeSection !== 'guias'}" class="transition-colors duration-300">Guias</a>
                 </nav>
 
-                <!-- Mobile Menu Button -->
                 <div class="md:hidden ml-4">
                     <button @click="openMenu = !openMenu" class="text-gray-600 focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -105,7 +99,6 @@
             </div>
         </div>
         
-        <!-- Mobile Menu -->
         <div x-show="openMenu" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="md:hidden bg-white border-t" @click.away="openMenu = false">
             <nav class="flex flex-col p-4 space-y-2">
                 <a href="#leis" @click="openMenu = false; activeSection = 'leis'" class="text-gray-600 hover:text-custom-blue px-4 py-2 rounded">Leis</a>
@@ -118,17 +111,14 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="container mx-auto px-6 py-12">
         
-        <!-- Introductory Text -->
         <div class="text-center mb-16">
             <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
                 Este site é um compilado interativo dos principais marcos legais que fundamentam a Educação Digital no Brasil. Navegue pelas seções para explorar leis, decretos, diretrizes e outros documentos essenciais que orientam a integração da tecnologia na educação nacional.
             </p>
         </div>
 
-        <!-- Section: Leis -->
         <section id="leis" class="content-section mb-16">
             <h2 class="text-3xl font-bold mb-8 text-custom-blue flex items-center">
                 <span class="mr-4 text-4xl">📚</span> Leis
@@ -136,7 +126,6 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
         
-        <!-- Section: Decretos -->
         <section id="decretos" class="content-section mb-16">
             <h2 class="text-3xl font-bold mb-8 text-custom-red flex items-center">
                 <span class="mr-4 text-4xl">📜</span> Decretos
@@ -144,7 +133,6 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
 
-        <!-- Section: Diretrizes -->
         <section id="diretrizes" class="content-section mb-16">
             <h2 class="text-3xl font-bold mb-8 text-yellow-title flex items-center">
                 <span class="mr-4 text-4xl">📄</span> Diretrizes e Referenciais Curriculares
@@ -152,7 +140,6 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
 
-        <!-- Section: Pareceres -->
         <section id="pareceres" class="content-section mb-16">
             <h2 class="text-3xl font-bold mb-8 text-custom-green flex items-center">
                 <span class="mr-4 text-4xl">📊</span> Pareceres, Resoluções e Portarias
@@ -160,7 +147,6 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
 
-        <!-- Section: Referenciais -->
         <section id="referenciais" class="content-section mb-16">
             <h2 class="text-3xl font-bold mb-8 text-custom-blue flex items-center">
                 <span class="mr-4 text-4xl">🎯</span> Referenciais e Estratégias
@@ -168,7 +154,6 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
 
-        <!-- Section: Guias -->
         <section id="guias" class="content-section mb-16">
             <h2 class="text-3xl font-bold mb-8 text-custom-red flex items-center">
                 <span class="mr-4 text-4xl">🗺️</span> Guias e Demais Recursos
@@ -178,16 +163,15 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="bg-custom-gray text-white py-8">
         <div class="container mx-auto px-6 text-center">
             <p>Compilação elaborada por:</p>
-            <p class="font-bold text-lg mt-1 text-custom-yellow">Julciane Castro da Rocha (UFMS)</p>
+            <p class="font-bold text-lg mt-1 text-custom-yellow">Julciane Castro da Rocha (UFMS e PUC/SP)</p>
+            <p class="mt-2 text-sm">Contato: <a href="mailto:julci@redesenhoedu.com.br" class="hover:underline">julci@redesenhoedu.com.br</a></p>
             <p class="text-sm mt-4 opacity-70">&copy; 2025 - Bases Legais da Educação Digital no Brasil. Todos os direitos reservados.</p>
         </div>
     </footer>
     
-    <!-- Back to Top Button -->
     <button x-show="showBackToTop" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 transform translate-y-4"
